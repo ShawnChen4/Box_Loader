@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.awt.Color;
 
 public class Box {
     private int width;
@@ -8,8 +9,9 @@ public class Box {
     private int x;
     private int y;
     private int shippingNumber;
+    private Color color;
 //---------------------------------------------------------------------------
-    public Box(int width, int length, int height, int weight, int x, int y, int shippingNumber) {
+    public Box(int width, int length, int height, int weight, int x, int y, int shippingNumber, Color color) {
         this.width = width;
         this.length = length;
         this.height = height;
@@ -17,8 +19,9 @@ public class Box {
         this.x = x;
         this.y = y;
         this.shippingNumber = shippingNumber;
+        this.color = color;
     }
-//---------------------------------------------------------------------------
+    //---------------------------------------------------------------------------
     //getters and setters
     public int getWidth() {
         return width;
@@ -62,6 +65,10 @@ public class Box {
         this.y = y;
     }
 
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
     public int getShippingNumber() {
         return shippingNumber;
     }
@@ -69,5 +76,8 @@ public class Box {
         this.shippingNumber = shippingNumber;
     }
 //---------------------------------------------------------------------------
-    public void draw(Graphics g) {} 
+    public void draw(Graphics g) {
+        g.setColor(color);
+        g.fillRect(this.x, this.y, this.width, this.height);
+    }
 }
