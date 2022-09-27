@@ -2,6 +2,7 @@ import java.util.Scanner;
 import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Represents the recieving system. It manages a warehouse by adding boxes
@@ -71,6 +72,9 @@ class RecievingSystem {
          *     warehouse.addBox(box);
          * }
          */
+        
+        InputGraphics gui = new InputGraphics();
+        ArrayList<Box> boxes = gui.run();
     }
     
     public Warehouse getWarehouse() {
