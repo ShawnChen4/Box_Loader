@@ -11,6 +11,12 @@ public class Warehouse {
         this.boxSorted = boxSorted;
         this.trucks = trucks;
     }
+    
+    public Warehouse() {
+        boxes = new ArrayList<Box>();
+        boxSorted = new ArrayList<Box>();
+        trucks = new ArrayList<Truck>();
+    }
 //---------------------------------------------------------------------------
     // getters and setters
     public ArrayList<Truck> getTrucks() {
@@ -28,6 +34,11 @@ public class Warehouse {
             }
         }
     }
+    
+    public ArrayList<Box> getBoxes() {
+        return boxes;
+    }
+    
     /** 
      * Method to add trucks
      * 
