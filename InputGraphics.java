@@ -2,20 +2,20 @@ import java.awt.Graphics;
 import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
+import java.util.ArrayList;
 
-public class Main {
-    static final int WIDTH = 800;
-    static final int HEIGHT = 600;
-    static final int DELAY = 10;
+class InputGraphics {
+    final int WIDTH = 800;
+    final int HEIGHT = 600;
+    final int DELAY = 10;
     
-    static JFrame frame;
-    static GraphicsPanel canvas;
-    static Box selectedBox;
-
-    public static void main(String[] args) {
-        Menu menu = new Menu();
-        menu.run();
-        Main driver = new Main();
+    JFrame frame;
+    GraphicsPanel canvas;
+    InputBox selectedBox;
+    ArrayList<Box> boxes = new ArrayList<Box>();
+    
+    public ArrayList<Box> run() {
+        InputGraphics gui = new InputGraphics();
         boolean running = true;
         while (running) {
             
@@ -27,9 +27,10 @@ public class Main {
             
             frame.repaint();
         }
+        return boxes;
     }
-
-    Main() {
+    
+    InputGraphics() {
         frame = new JFrame("Recieving System");
         frame.setSize(WIDTH, HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -38,9 +39,8 @@ public class Main {
         frame.add(canvas);
         frame.setVisible(true);
         
-        selectedBox = new Box(200,200,200,200,200,200,200, new Color(0, 0, 0));
     }
-
+    
     class GraphicsPanel extends JPanel {
         GraphicsPanel() {
             setFocusable(true);

@@ -64,6 +64,10 @@ public class Box {
     public void setY(int y) {
         this.y = y;
     }
+    
+    public Color getColor() {
+        return color;
+    }
 
     public void setColor(Color color) {
         this.color = color;
@@ -74,10 +78,5 @@ public class Box {
     }
     public void setShippingNumber(int shippingNumber) {
         this.shippingNumber = shippingNumber;
-    }
-//---------------------------------------------------------------------------
-    public void draw(Graphics g) {
-        g.setColor(color);
-        g.fillRect(this.x, this.y, this.width, this.height);
     }
 }
