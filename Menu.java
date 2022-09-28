@@ -1,11 +1,11 @@
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Font;
 import java.io.File;
-import java.io.IOException;
-import javax.swing.*;
-import java.util.*;
-import javax.swing.BorderFactory;
-
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class Menu {
 	
@@ -22,8 +22,6 @@ public class Menu {
 	private JPanel buttonPanel;
 	private JPanel printoutPanel;
 	private MyKeyListener keyListener; 
-	private ArrayList<String> properties;
-	private ArrayList<Trader> traders;
 	private File database;
 	private String[] buyerIDArr;
 	private String[] sellerIDArr;
