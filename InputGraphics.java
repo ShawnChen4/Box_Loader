@@ -65,7 +65,7 @@ class InputGraphics {
         // Visualization panel
         JPanel visualizationPanel = new JPanel();
         visualizationPanel.setLayout(new GridLayout(VISUALIZATION_PANEL_HEIGHT, 2));
-        visualizationPanel.add(new TestPanel());
+        visualizationPanel.add(new VisualizerPanel());
         frame.getContentPane().add(visualizationPanel, BorderLayout.WEST);
         
         frame.pack();

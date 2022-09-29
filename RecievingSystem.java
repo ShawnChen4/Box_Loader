@@ -53,6 +53,7 @@ class RecievingSystem {
             
             warehouse.addBox(box);
         }
+        scanner.close();
     }
     
     public void loadBoxes() {
