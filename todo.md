@@ -1,0 +1,7 @@
+- [ ] Visualizer
+- [ ] formPanel
+    - [ ] submit button
+    - [ ] pre-defined templates
+    - [ ] nice gridlayout
+- [ ] making the gui look nice
+- [ ] implement up-to-date truck, box, warehouse classes
