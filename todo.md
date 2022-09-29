@@ -5,3 +5,4 @@
     - [ ] nice gridlayout
 - [ ] making the gui look nice
 - [ ] implement up-to-date truck, box, warehouse classes
+- [ ] commenting
