@@ -32,7 +32,7 @@ class RecievingSystem {
      * 
      * @param file this is the file where the box specifications are located.
      */
-    public void recieveBox(File file) throws IOException {
+    public void loadBoxes(File file) throws IOException {
         Scanner scanner = new Scanner(file);
         int numberOfBoxes = scanner.nextInt();
         for (int i = 0; i < numberOfBoxes; i++) {
@@ -55,7 +55,7 @@ class RecievingSystem {
         }
     }
     
-    public void recieveBox() {
+    public void loadBoxes() {
         /* we could probably put our gui system here. Say we have a class called
          * InputGraphics, then we instantiate and run it here.
          * 
@@ -73,8 +73,7 @@ class RecievingSystem {
          * }
          */
         
-        InputGraphics gui = new InputGraphics();
-        ArrayList<Box> boxes = gui.run();
+        ArrayList<Box> boxes = new InputGraphics().run();
     }
     
     public Warehouse getWarehouse() {

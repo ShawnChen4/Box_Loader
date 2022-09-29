@@ -3,19 +3,30 @@ import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import java.util.ArrayList;
+import java.awt.GridLayout;
+import javax.swing.JButton;
+import java.awt.BorderLayout;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 class InputGraphics {
     final int WIDTH = 800;
     final int HEIGHT = 600;
     final int DELAY = 10;
     
+    private final int FORM_PANEL_HEIGHT = 1;
+    private final int VISUALIZATION_PANEL_HEIGHT = 1;
+    
+    private JTextField lengthInput = new JTextField(10);
+    private JTextField widthInput = new JTextField(10);
+    private JTextField heightInput = new JTextField(10);
+    private JTextField weightInput = new JTextField(10);
+    
     JFrame frame;
-    GraphicsPanel canvas;
     InputBox selectedBox;
     ArrayList<Box> boxes = new ArrayList<Box>();
     
     public ArrayList<Box> run() {
-        InputGraphics gui = new InputGraphics();
         boolean running = true;
         while (running) {
             
@@ -34,26 +45,30 @@ class InputGraphics {
         frame = new JFrame("Recieving System");
         frame.setSize(WIDTH, HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new GridLayout(0, 2, 10, 10));
         
-        canvas = new GraphicsPanel();
-        frame.add(canvas);
+        // Form panel
+        JPanel formPanel = new JPanel();
+        formPanel.setLayout(new GridLayout(4, 2, 0, 10));
+        
+        formPanel.add(new JLabel("Length"));
+        formPanel.add(lengthInput);
+        formPanel.add(new JLabel("Width"));
+        formPanel.add(widthInput);
+        formPanel.add(new JLabel("Height"));
+        formPanel.add(heightInput);
+        formPanel.add(new JLabel("Weight"));
+        formPanel.add(weightInput);
+        
+        frame.getContentPane().add(formPanel, BorderLayout.WEST);
+        
+        // Visualization panel
+        JPanel visualizationPanel = new JPanel();
+        visualizationPanel.setLayout(new GridLayout(VISUALIZATION_PANEL_HEIGHT, 2));
+        visualizationPanel.add(new TestPanel());
+        frame.getContentPane().add(visualizationPanel, BorderLayout.WEST);
+        
+        frame.pack();
         frame.setVisible(true);
-        
-    }
-    
-    class GraphicsPanel extends JPanel {
-        GraphicsPanel() {
-            setFocusable(true);
-            requestFocusInWindow();
-        }
-        
-        public void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            setDoubleBuffered(true);
-            
-            if (selectedBox != null) {
-                selectedBox.draw(g);
-            }
-        }
     }
 }
