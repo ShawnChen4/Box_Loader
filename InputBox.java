@@ -3,8 +3,8 @@ import java.awt.Graphics;
 
 class InputBox extends Box {
     
-    public InputBox(int width, int length, int height, int weight, int x, int y, int shippingNumber, Color color) {
-        super(width, length, height, weight, x, y, shippingNumber, color);
+    public InputBox(int width, int length, int height, int weight, int x, int y, Color color) {
+        super(width, length, height, weight, x, y,  color);
     }
     
     public void draw(Graphics g) {

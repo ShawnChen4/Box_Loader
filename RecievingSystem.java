@@ -48,10 +48,23 @@ class RecievingSystem {
             int blue             = scanner.nextInt();
             
             Color colour = new Color(red, green, blue);
-            Box box      = new Box(width, length, height, weight, x, y, 
-                                   shippingNumber, colour);
+            Box box      = new Box(width, length, height, weight, x, y, colour);
             
             warehouse.addBox(box);
+        }
+        scanner.close();
+    }
+
+    public void loadTrucks(File file ) throws IOException {
+        Scanner scanner = new Scanner(file);
+        int numberOfTrucks = scanner.nextInt();
+        for (int i = 0; i < numberOfTrucks; i++) {
+            int width            = scanner.nextInt();
+            int length           = scanner.nextInt();
+            int height           = scanner.nextInt();
+            int maxWeight        = scanner.nextInt();        
+            Truck truck  = new Truck(new ArrayList<Box>(), width, length, height, maxWeight);
+            warehouse.addTruck(truck);
         }
         scanner.close();
     }

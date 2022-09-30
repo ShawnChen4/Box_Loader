@@ -8,7 +8,7 @@ public class Truck {
     private int maxWeight;
     private ArrayList<Box> loadedBoxes;
 //---------------------------------------------------------------------------
-    public Truck(ArrayList<Box> boxes, int  length, int width, int height, int maxWeight, int loadedBoxes) {
+    public Truck(ArrayList<Box> boxes, int  length, int width, int height, int maxWeight) {
         this.length = length;
         this.width = width;
         this.height = height;
