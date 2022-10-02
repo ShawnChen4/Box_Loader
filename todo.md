@@ -1,4 +1,7 @@
 - [ ] Visualizer
+- [ ] Truck Input
+- [ ] Merge inputvisualizer classes
+- [ ] Menu
 - [ ] formPanel
     - [ ] submit button
     - [ ] pre-defined templates
