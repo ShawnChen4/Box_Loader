@@ -1,4 +1,5 @@
 - [ ] Visualizer
+- [ ] Print Stuff
 - [ ] Truck Input
 - [ ] Merge inputvisualizer classes
 - [ ] Menu
