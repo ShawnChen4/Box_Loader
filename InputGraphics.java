@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.JDialog;
+import javax.swing.JComponent;
 
 class InputGraphics {
     final int WIDTH = 800;
@@ -50,6 +51,10 @@ class InputGraphics {
         visualizer.selectBox(new InputBox(10,10,10,10,10,new Color(20,20,20)));
         while (running) {
             
+            // submit();
+            
+            System.out.println(color);
+            
             try {
                 Thread.sleep(DELAY);
             } catch (InterruptedException e) {
@@ -62,11 +67,21 @@ class InputGraphics {
     }
     
     public void submit() {
-        int length = Integer.parseInt(lengthInput.getText());
-        int width = Integer.parseInt(lengthInput.getText());
-        int height = Integer.parseInt(heightInput.getText());
+        float length = Float.parseFloat(lengthInput.getText());
+        float width = Float.parseFloat(lengthInput.getText());
+        float height = Float.parseFloat(heightInput.getText());
         System.out.printf("%d %d %d\n", length, width, height);
-        
+    }
+    
+    public void addItem(JPanel panel, JComponent component,
+                        int x, int y, int pady, int gridwidth) {
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = x;
+        c.gridy = y;
+        c.ipady = pady;
+        c.gridwidth = gridwidth;
+        panel.add(component, c);
     }
     
     InputGraphics() {
@@ -79,55 +94,26 @@ class InputGraphics {
         // Form panel
         formPanel = new JPanel();
         formPanel.setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-        c.fill = GridBagConstraints.HORIZONTAL;
         
         // Form text fields
-        c.gridx = 0;
-        c.gridy = 0;
-        formPanel.add(new JLabel("Length"), c);
-        c.gridx = 1;
-        c.gridy = 0;
-        formPanel.add(lengthInput, c);
-        
-        c.gridx = 0;
-        c.gridy = 1;
-        formPanel.add(new JLabel("Width"), c);
-        c.gridx = 1;
-        c.gridy = 1;
-        formPanel.add(widthInput, c);
-        
-        c.gridx = 0;
-        c.gridy = 2;
-        formPanel.add(new JLabel("Height"), c);
-        c.gridx = 1;
-        c.gridy = 2;
-        formPanel.add(heightInput, c);
-        
-        c.gridx = 0;
-        c.gridy = 3;
-        formPanel.add(new JLabel("Weight"), c);
-        c.gridx = 1;
-        c.gridy = 3;
-        formPanel.add(weightInput, c);
+
+        addItem(formPanel, new JLabel("Length"), 0, 0, 0, 1);
+        addItem(formPanel, lengthInput, 1, 0, 0, 1);
+        addItem(formPanel, new JLabel("Width"), 0, 1, 0, 1);
+        addItem(formPanel, widthInput, 1, 1, 0, 1);
+        addItem(formPanel, new JLabel("Height"), 0, 2, 0, 1);
+        addItem(formPanel, heightInput, 1, 2, 0, 1);
+        addItem(formPanel, new JLabel("Weight"), 0, 3, 0, 1);
+        addItem(formPanel, weightInput, 1, 3, 0, 1);
         
         // color picker
-        c.ipady = 20;
-        c.weightx = 0.0;
-        c.gridwidth = 3;
-        c.gridx = 0;
-        c.gridy = 4;
         colorButton.addActionListener(new ColorListener());
         colorChooser = new JColorChooser();
         colorChooser.setPreviewPanel(new JPanel());
-        formPanel.add(colorButton, c);
         
-        c.ipady = 20;
-        c.weightx = 0.0;
-        c.gridwidth = 3;
-        c.gridx = 0;
-        c.gridy = 5;
-        formPanel.add(submitButton, c);
+        // c.gridwidth = 3;
+        addItem(formPanel, colorButton, 0, 4, 20, 3);
+        addItem(formPanel, submitButton, 0, 5, 20, 3);
         
         frame.getContentPane().add(formPanel, BorderLayout.WEST);
         
