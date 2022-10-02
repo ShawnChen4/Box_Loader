@@ -8,15 +8,17 @@ public class Box {
     private int weight;
     private int x;
     private int y;
+    private int shippingNumber;
     private Color color;
 //---------------------------------------------------------------------------
-    public Box(int width, int length, int height, int weight, int x, int y, Color color) {
+    public Box(int width, int length, int height, int weight, int shippingNumber, Color color) {
         this.width = width;
         this.length = length;
         this.height = height;
         this.weight = weight;
         this.x = x;
         this.y = y;
+        this.shippingNumber = shippingNumber;
         this.color = color;
     }
     //---------------------------------------------------------------------------
@@ -69,5 +71,12 @@ public class Box {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public int getShippingNumber() {
+        return shippingNumber;
+    }
+    public void setShippingNumber(int shippingNumber) {
+        this.shippingNumber = shippingNumber;
     }
 }

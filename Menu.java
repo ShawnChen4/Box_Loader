@@ -77,8 +77,6 @@ public class Menu {
         }
     }
     
-    
-    
     public void storeOrder() {
         String length = lengthInput.getText();
         lengthInput.setText("");
@@ -108,6 +106,5 @@ public class Menu {
         public void actionPerformed(ActionEvent event) {
             storeOrder();
         }
-    }
-    
+    }    
 }

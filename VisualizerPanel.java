@@ -2,12 +2,21 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 class VisualizerPanel extends JPanel {
+    
+    private InputBox box;
+    
     VisualizerPanel() {
         setFocusable(true);
         requestFocusInWindow();
     }
+    
+    public void selectBox(InputBox box) {
+        this.box = box;
+    }
 
     public void paintComponent(Graphics g) {
-        g.drawString("visualization panel", 20, 20);
+        if (box != null) {
+            box.draw(g);
+        }
     }
 }
