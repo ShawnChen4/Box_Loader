@@ -67,6 +67,9 @@ class GraphicalBoxInput {
         ArrayList<Box> output = new ArrayList<Box>();
        
         while (running) {
+            colorButton.setBorderPainted(false);
+            colorButton.setOpaque(true);
+            colorButton.setBackground(color);
             
             // if a box is selected, the change the focus of
             // program to that box.
@@ -172,7 +175,7 @@ class GraphicalBoxInput {
         boxList.setVisibleRowCount(5);
         JScrollPane boxListScrollPane = new JScrollPane(boxList);
         addItem(formPanel, boxListScrollPane, 0, 6, 20, 3);
-        
+                
         // Button for deleting boxes
         deleteButton.addActionListener(new DeleteListener());
         addItem(formPanel, deleteButton, 0, 7, 20, 3);

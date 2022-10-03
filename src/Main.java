@@ -1,5 +1,5 @@
 package src;
-class Test {
+class Main {
     public static void main(String[] args) {
         RecievingSystem rs = new RecievingSystem();
         rs.run();
