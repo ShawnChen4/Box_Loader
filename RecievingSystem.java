@@ -40,13 +40,12 @@ class RecievingSystem {
             int length           = scanner.nextInt();
             int height           = scanner.nextInt();
             int weight           = scanner.nextInt();
-            int shippingNumber   = scanner.nextInt();
             int red              = scanner.nextInt();
             int green            = scanner.nextInt();
             int blue             = scanner.nextInt();
             
             Color colour = new Color(red, green, blue);
-            Box box = new Box(width, length, height, weight, shippingNumber, colour);
+            Box box = new Box(width, length, height, weight, colour);
             
             warehouse.addBox(box);
         }
@@ -54,24 +53,22 @@ class RecievingSystem {
     }
     
     public void loadBoxes() {
-        /* we could probably put our gui system here. Say we have a class called
-         * InputGraphics, then we instantiate and run it here.
-         * 
-         * InputGraphics gui = new InputGraphics();
-         * 
-         * And if the run method of gui returns an array of Boxes, we can do:
-         * 
-         * ArrayList<Box> boxes = gui.run();
-         * 
-         * So this would render the graphics *and* return an array of boxes that
-         * we can iterate through and add to the ware house:
-         * 
-         * for (Box box : boxes) {
-         *     warehouse.addBox(box);
-         * }
-         */
-        
-        ArrayList<Box> boxes = new InputGraphics().run();
+        ArrayList<Box> boxes = new GraphicalBoxInput().run();
+        for (Box box: boxes) {
+            warehouse.addBox(box);
+        }
+    }
+    
+    public void loadTrucks() {
+        ArrayList<Truck> trucks = new GraphicalTruckInput().run();
+        for (Truck truck: trucks) {
+            warehouse.addTruck(truck);
+        }
+    }
+    
+    public void run() {
+        this.loadBoxes();
+        this.loadTrucks();
     }
     
     public Warehouse getWarehouse() {

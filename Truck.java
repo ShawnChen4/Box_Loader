@@ -8,12 +8,12 @@ public class Truck {
     private int maxWeight;
     private ArrayList<Box> loadedBoxes;
 //---------------------------------------------------------------------------
-    public Truck(ArrayList<Box> boxes, int  length, int width, int height, int maxWeight, int loadedBoxes) {
+    public Truck(int  length, int width, int height, int maxWeight) {
         this.length = length;
         this.width = width;
         this.height = height;
         this.maxWeight = maxWeight;
-        this.loadedBoxes = boxes;
+        this.loadedBoxes = new ArrayList<Box>();
     }
 //---------------------------------------------------------------------------
     // getters and setters
@@ -39,10 +39,19 @@ public class Truck {
         return false;
     }
 //---------------------------------------------------------------------------
-    /** 
-    * Method to draw/visualize a truck
-    * 
-    * @param g
-    */
-    public void draw(Graphics g) {} 
+    public int getLength() {
+        return length;
+    }
+    
+    public int getHeight() {
+        return height;
+    }
+    
+    public int getMaxWeight() {
+        return maxWeight;
+    }
+    
+    public int getWidth() {
+        return width;
+    }
 }
