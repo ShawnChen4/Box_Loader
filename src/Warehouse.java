@@ -2,6 +2,10 @@ package src;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+/**
+ * Warehouse
+ * A class that manages the boxes into the trucks
+ */
 public class Warehouse {
     ArrayList<Box> boxes;
     ArrayList<Box> boxSorted;

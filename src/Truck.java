@@ -2,6 +2,10 @@ package src;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+/**
+ * Truck
+ * An object for a truck
+ */
 public class Truck {
     private int length;
     private int width;

@@ -2,7 +2,10 @@ package src;
 import java.awt.Graphics;
 import java.awt.Color;
 
-
+/**
+ * Box
+ * An object for a box
+ */
 public class Box {
     private int width;
     private int length;

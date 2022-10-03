@@ -1,4 +1,5 @@
 package src;
+
 /**
  * InputTruck is used by the graphical inputting system to represent
  * trucks and to get a string representation of them
