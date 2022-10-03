@@ -9,7 +9,6 @@ import javax.swing.JButton;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JColorChooser;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.event.ChangeListener;
@@ -22,6 +21,11 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.JScrollPane;
 
+/**
+ * GraphicalTruckInput
+ * Manages a Graphical User Interface for inputting trucks
+ * @see GraphicalBoxInput
+ */
 class GraphicalTruckInput {
     final int WIDTH = 800;
     final int HEIGHT = 600;
@@ -46,26 +50,45 @@ class GraphicalTruckInput {
     private ArrayList<InputTruck> trucks = new ArrayList<InputTruck>();
     private boolean running = true;
     
+    /**
+     * Runs the main loop of the truck input GUI.
+     * 
+     * @return the trucks the user fed to it.
+     */
     public ArrayList<Truck> run() {
         ArrayList<Truck> output = new ArrayList<Truck>();
         while (running) {
             try {
                 Thread.sleep(DELAY);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
+            } catch (InterruptedException e) {}
             
             frame.repaint();
         }
         
-        for (Truck t: trucks) {
-            output.add(t);
+        for (InputTruck t: trucks) {
+            output.add(t.toTruck());
         }
         
         frame.dispose();
         return output;
     }
     
+    /**
+     * Adds an item to the given panel at the given point of the
+     * GridBagLayout of the panel.
+     * 
+     * @param panel     The panel which items will be added to.
+     * @param component The component that is being added.
+     * @param x         The x coordinate of where the component
+     *                  is going to be placed at in the layout
+     *                  of the panel
+     * @param y         The y cooridnate of where the component
+     *                  is going to be placed at.
+     * @param pady      The y-padding of the component in the
+     *                  GridBagLayout.
+     * @param gridwidth The gridwidth of the component's GridBag
+     *                  Constraints.
+     */
     public void addItem(JPanel panel, JComponent component,
                         int x, int y, int pady, int gridwidth) {
         GridBagConstraints c = new GridBagConstraints();
@@ -77,6 +100,10 @@ class GraphicalTruckInput {
         panel.add(component, c);
     }
     
+    /**
+     * Initilizes the Graphical User Interface by adding and arranging
+     * the input form and the visualization panel.
+     */
     GraphicalTruckInput() {
         lengthInput = new JTextField(10);
         widthInput = new JTextField(10);
@@ -111,7 +138,7 @@ class GraphicalTruckInput {
         
         frame.getContentPane().add(formPanel, BorderLayout.WEST);
         
-        // List of inputed boxes
+        // List of inputed trucks
         truckListModel = new DefaultListModel<String>();
         truckList = new JList<String>(truckListModel);
         truckList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -121,7 +148,7 @@ class GraphicalTruckInput {
         JScrollPane truckListScrollPane = new JScrollPane(truckList);
         addItem(formPanel, truckListScrollPane, 0, 6, 20, 3);
         
-        // Button for deleting boxes
+        // Button for deleting trucks
         deleteButton.addActionListener(new DeleteListener());
         addItem(formPanel, deleteButton, 0, 7, 20, 3);
         
@@ -135,7 +162,16 @@ class GraphicalTruckInput {
         frame.setVisible(true);
     }
     
+    /**
+     * Listener for the submit button. Adds a truck to the truck ArrayList
+     * when the submit button is pressed.
+     */
     class SubmitListener implements ActionListener {
+        /**
+         * When an the submit button is pressed, it adds a truck to
+         * the truck ArrayList.
+         * @param e An ActionEvent.
+         */
         public void actionPerformed(ActionEvent e) {
             int length = Integer.parseInt(lengthInput.getText());
             int width  = Integer.parseInt(widthInput.getText());
@@ -147,17 +183,28 @@ class GraphicalTruckInput {
             truckListModel.addElement(truck.toString());
         }
     }
-    
+    /**
+     * Listener for the delete button.
+     */
     class DeleteListener implements ActionListener {
+        /**
+         * When the delete button is pressed, remove the
+         * selected truck from the truck array.
+         * @param e An ActionEvent
+         */
         public void actionPerformed(ActionEvent e) {
             int index = truckList.getSelectedIndex();
             truckListModel.remove(index);
             trucks.remove(index);
             
-            int size = truckListModel.getSize();
+            int size = truckListModel.getSize();            
+            // if there are no trucks left, then disable 
+            // the delete button.
             if (size == 0) {
                 deleteButton.setEnabled(false);
             } else {
+                // After deleting the truck, move the selection
+                // to the truck above it on the list.
                 if (index == truckListModel.getSize()) {
                     index--;
                 }
@@ -167,8 +214,18 @@ class GraphicalTruckInput {
         }
     }
     
+    /**
+     * Listener for the list of trucks
+     */
     class TruckListSelectionListener implements ListSelectionListener {
+        /**
+         * When the user clicks on another item in the list, change the
+         * focus of the program and the visualizer to that.
+         * @param e A ListSelectionEvent.
+         */
         public void valueChanged(ListSelectionEvent e) {
+            // if there are no trucks in the list, disable the delete
+            // button
             if (e.getValueIsAdjusting() == false) {
                 if (truckList.getSelectedIndex() == -1) {
                     deleteButton.setEnabled(false);
@@ -179,7 +236,14 @@ class GraphicalTruckInput {
         }
     }
     
+    /**
+     * Listener for the done button
+     */
     class DoneListener implements ActionListener {
+        /**
+         * When the done button is pressed, stop running the program
+         * @param e An ActionEvent
+         */
         public void actionPerformed(ActionEvent e) {
             running = false;
         }
