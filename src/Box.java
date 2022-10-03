@@ -1,5 +1,7 @@
+package src;
 import java.awt.Graphics;
 import java.awt.Color;
+
 
 public class Box {
     private int width;

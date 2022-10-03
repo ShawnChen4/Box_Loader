@@ -1,3 +1,4 @@
+package src;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 
@@ -5,7 +6,7 @@ import javax.swing.JPanel;
  * Visualization panel used to visualize boxes for the
  * input graphical user interface.
  */
-class VisualizerPanel extends JPanel {
+public class VisualizerPanel extends JPanel {
     
     private InputBox box;
     
