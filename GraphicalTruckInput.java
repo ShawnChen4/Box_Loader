@@ -1,19 +1,14 @@
-import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import java.util.ArrayList;
-import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import javax.swing.JButton;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JColorChooser;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.ChangeEvent;
 import javax.swing.JComponent;
 import javax.swing.JList;
 import javax.swing.DefaultListModel;
@@ -26,9 +21,7 @@ class GraphicalTruckInput {
     final int WIDTH = 800;
     final int HEIGHT = 600;
     final int DELAY = 10;
-    
-    private final int VISUALIZATION_PANEL_HEIGHT = 1;
-    
+        
     private JTextField lengthInput;
     private JTextField widthInput;
     private JTextField heightInput;
