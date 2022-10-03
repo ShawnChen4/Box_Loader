@@ -1,3 +1,4 @@
+package src;
 import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
@@ -22,6 +23,11 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.JScrollPane;
 
+/**
+ * GraphicalBoxInput
+ * Manages a Graphical User Interface for inputting boxes
+ * @see GraphicalTruckInput
+ */
 class GraphicalBoxInput {
     final int WIDTH = 800;
     final int HEIGHT = 600;
@@ -40,45 +46,67 @@ class GraphicalBoxInput {
     
     private JPanel formPanel, visualizationPanel;
     
-    private Color color;
-    private VisualizerPanel visualizer;
+    private Color color; // user's currently chosen color.
+    private VisualizerPanel visualizer; // The program's box visualizer
     
     private JColorChooser colorChooser;
-    private JList<String> boxList;
+    private JList<String> boxList; // list of given boxes
     private DefaultListModel<String> boxListModel;
     
     private JFrame frame;
-    private InputBox selectedBox;
+    private InputBox selectedBox; // the box the current program is focusing on
     private ArrayList<InputBox> boxes = new ArrayList<InputBox>();
     private boolean running = true;
     
+    /**
+     * Runs the main loop of the box input GUI.
+     * 
+     * @return the boxes the user fed to it.
+     */
     public ArrayList<Box> run() {
         ArrayList<Box> output = new ArrayList<Box>();
-        visualizer.selectBox(new InputBox(10, 10, 10, 10, new Color(20,20,20)));
+       
         while (running) {
             
+            // if a box is selected, the change the focus of
+            // program to that box.
             int index = boxList.getSelectedIndex();
             if (index != -1) {
                 visualizer.selectBox(boxes.get(index));
             }
             
-            try {
-                Thread.sleep(DELAY);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
+            try { Thread.sleep(DELAY); }
+            catch (InterruptedException e) {}
             
             frame.repaint();
         }
         
+        // Convert the user's choosen boxes to Box and write
+        // it to the output array.
         for (InputBox b: boxes) {
             output.add(b.toBox());
         }
         
-        frame.dispose();
-        return output;
+        frame.dispose(); // close the frame
+        return output;   // return the output array
     }
     
+    /**
+     * Adds an item to the given panel at the given point of the
+     * GridBagLayout of the panel.
+     * 
+     * @param panel     The panel which items will be added to.
+     * @param component The component that is being added.
+     * @param x         The x coordinate of where the component
+     *                  is going to be placed at in the layout
+     *                  of the panel
+     * @param y         The y cooridnate of where the component
+     *                  is going to be placed at.
+     * @param pady      The y-padding of the component in the
+     *                  GridBagLayout.
+     * @param gridwidth The gridwidth of the component's GridBag
+     *                  Constraints.
+     */
     public void addItem(JPanel panel, JComponent component,
                         int x, int y, int pady, int gridwidth) {
         GridBagConstraints c = new GridBagConstraints();
@@ -90,6 +118,10 @@ class GraphicalBoxInput {
         panel.add(component, c);
     }
     
+    /**
+     * Initilizes the Graphical User Interface by adding and arranging
+     * the input form and the visualization panel.
+     */
     GraphicalBoxInput() {
         lengthInput = new JTextField(10);
         widthInput = new JTextField(10);
@@ -162,18 +194,40 @@ class GraphicalBoxInput {
         frame.setVisible(true);
     }
     
+    /**
+     * Listens for the color button. Opens up a color chooser where
+     * the user may choose a color for the box
+     */
     class ColorListener implements ActionListener, ChangeListener {
+        /**
+         * When an ActionEvent is perfored, opens up a color chooser
+         * and updates the color variable to the user's desired color
+         * @param e An ActionEvent.
+         */
         public void actionPerformed(ActionEvent e) {
             colorChooser.setPreviewPanel(new JPanel());
             color = JColorChooser.showDialog(formPanel, "Choose Color", color);
         }
         
+        /**
+         * When the state of the color chooser changes, it updates the color
+         * @param e A ChangeEvent.
+         */
         public void stateChanged(ChangeEvent e) {
             color = colorChooser.getColor();
         }
     }
     
+    /**
+     * Listener for the submit button. Adds a box to the box ArrayList
+     * when the submit button is pressed
+     */
     class SubmitListener implements ActionListener {
+        /**
+         * When an the submit button is pressed, it adds a box to
+         * the box class.
+         * @param e An ActionEvent.
+         */
         public void actionPerformed(ActionEvent e) {
             int length = Integer.parseInt(lengthInput.getText());
             int width  = Integer.parseInt(widthInput.getText());
@@ -186,16 +240,28 @@ class GraphicalBoxInput {
         }
     }
     
+    /**
+     * Listener for the delete button.
+     */
     class DeleteListener implements ActionListener {
+        /**
+         * When the delete button is pressed, remove the
+         * selected box from the box array.
+         * @param e An ActionEvent
+         */
         public void actionPerformed(ActionEvent e) {
             int index = boxList.getSelectedIndex();
             boxListModel.remove(index);
             boxes.remove(index);
             
             int size = boxListModel.getSize();
+            // if there are no boxes left, then disable 
+            // the delete button.
             if (size == 0) {
                 deleteButton.setEnabled(false);
             } else {
+                // After deleting the box, move the selection
+                // to the box above it on the list.
                 if (index == boxListModel.getSize()) {
                     index--;
                 }
@@ -205,9 +271,19 @@ class GraphicalBoxInput {
         }
     }
     
+    /**
+     * Listener for the list of boxes
+     */
     class BoxListSelectionListener implements ListSelectionListener {
+        /**
+         * When the user clicks on another item in the list, change the
+         * focus of the program and the visualizer to that.
+         * @param e A ListSelectionEvent.
+         */
         public void valueChanged(ListSelectionEvent e) {
             if (e.getValueIsAdjusting() == false) {
+                // if there are no boxes in the list, disable the delete
+                // button
                 if (boxList.getSelectedIndex() == -1) {
                     deleteButton.setEnabled(false);
                 } else {
@@ -217,7 +293,14 @@ class GraphicalBoxInput {
         }
     }
     
+    /**
+     * Listener for the done button
+     */
     class DoneListener implements ActionListener {
+        /**
+         * When the done button is pressed, stop running the program
+         * @param e An ActionEvent
+         */
         public void actionPerformed(ActionEvent e) {
             running = false;
         }
