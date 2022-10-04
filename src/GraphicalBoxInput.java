@@ -1,30 +1,34 @@
 package src;
+
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import java.util.ArrayList;
-import java.awt.GridLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
+
 import javax.swing.JButton;
-import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.JColorChooser;
+import javax.swing.JComponent;
+import javax.swing.JScrollPane;
+
+import java.awt.GridLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.BorderLayout;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
-import javax.swing.JComponent;
+
 import javax.swing.JList;
 import javax.swing.DefaultListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
-import javax.swing.JScrollPane;
+
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
@@ -49,7 +53,6 @@ class GraphicalBoxInput {
     private JButton deleteButton;
     private JButton doneButton;
 
-    private JLabel title;
     private JLabel lengthLabel;
     private JLabel widthLabel;
     private JLabel heightLabel;
@@ -133,47 +136,6 @@ class GraphicalBoxInput {
         c.gridwidth = gridwidth;
         panel.add(component, c);
     }
-
-    public void invertColorsDarkMode() {
-        // Setting panel backgrounds
-        frame.getContentPane().setBackground(Color.BLACK);
-        formPanel.setBackground(Color.BLACK);
-        // Setting color button
-        colorButton.setBackground(Color.WHITE);
-        color = Color.WHITE;
-        // Setting submit button
-        submitButton.setBackground(Color.WHITE);
-        // Setting delete button
-        deleteButton.setBackground(Color.WHITE);
-        // Setting done button
-        doneButton.setBackground(Color.WHITE);
-        // Setting texts
-        title.setForeground(Color.WHITE);
-        lengthLabel.setForeground(Color.WHITE);
-        widthLabel.setForeground(Color.WHITE);
-        heightLabel.setForeground(Color.WHITE);
-        weightLabel.setForeground(Color.WHITE);
-    }
-
-    public void invertColorsLightMode() {
-        // Setting panel backgrounds
-        frame.getContentPane().setBackground(Color.WHITE);
-        formPanel.setBackground(Color.WHITE);
-        // Setting color button
-        colorButton.setBackground(Color.BLACK);
-        // Setting submit button
-        submitButton.setBackground(Color.BLACK);
-        // Setting delete button
-        deleteButton.setBackground(Color.BLACK);
-        // Setting done button
-        doneButton.setBackground(Color.BLACK);
-        // Setting texts
-        title.setForeground(Color.BLACK);
-        lengthLabel.setForeground(Color.BLACK);
-        widthLabel.setForeground(Color.BLACK);
-        heightLabel.setForeground(Color.BLACK);
-        weightLabel.setForeground(Color.BLACK);
-    }
     
     /**
      * Initilizes the Graphical User Interface by adding and arranging
@@ -200,23 +162,20 @@ class GraphicalBoxInput {
         formPanel.setLayout(new GridBagLayout());
 
         // Labels
-        title = new JLabel("RECIEVING SYSTEM");
         lengthLabel = new JLabel("Length");
         widthLabel = new JLabel("Width");
         heightLabel = new JLabel("Height");
         weightLabel = new JLabel("Weight");
         
         // Form text fields
-        title.setFont(new Font("Arial", Font. BOLD, 25));
-        addItem(formPanel, title, 0, 0, 0, 1);
-        addItem(formPanel, lengthLabel, 0, 1, 0, 1);
-        addItem(formPanel, lengthInput, 1, 1, 0, 2);
-        addItem(formPanel, widthLabel, 0, 2, 0, 1);
-        addItem(formPanel, widthInput, 1, 2, 0, 2);
-        addItem(formPanel, heightLabel, 0, 3, 0, 1);
-        addItem(formPanel, heightInput, 1, 3, 0, 2);
-        addItem(formPanel, weightLabel, 0, 4, 0, 1);
-        addItem(formPanel, weightInput, 1, 4, 0, 2);
+        addItem(formPanel, lengthLabel, 0, 0, 0, 1);
+        addItem(formPanel, lengthInput, 1, 0, 0, 2);
+        addItem(formPanel, widthLabel, 0, 1, 0, 1);
+        addItem(formPanel, widthInput, 1, 1, 0, 2);
+        addItem(formPanel, heightLabel, 0, 2, 0, 1);
+        addItem(formPanel, heightInput, 1, 2, 0, 2);
+        addItem(formPanel, weightLabel, 0, 3, 0, 1);
+        addItem(formPanel, weightInput, 1, 3, 0, 2);
         
         // color picker
         colorButton.addActionListener(new ColorListener());
@@ -225,8 +184,8 @@ class GraphicalBoxInput {
         // submit button
         submitButton.addActionListener(new SubmitListener());
         
-        addItem(formPanel, colorButton, 0, 5, 20, 3);
-        addItem(formPanel, submitButton, 0, 6, 20, 3);
+        addItem(formPanel, colorButton, 0, 4, 20, 3);
+        addItem(formPanel, submitButton, 0, 5, 20, 3);
         
         frame.getContentPane().add(formPanel, BorderLayout.WEST);
         
@@ -238,11 +197,11 @@ class GraphicalBoxInput {
         boxList.addListSelectionListener(new BoxListSelectionListener());
         boxList.setVisibleRowCount(5);
         JScrollPane boxListScrollPane = new JScrollPane(boxList);
-        addItem(formPanel, boxListScrollPane, 0, 7, 20, 3);
+        addItem(formPanel, boxListScrollPane, 0, 6, 20, 3);
                 
         // Button for deleting boxes
         deleteButton.addActionListener(new DeleteListener());
-        addItem(formPanel, deleteButton, 0, 8, 20, 3);
+        addItem(formPanel, deleteButton, 0, 7, 20, 3);
         
         // Visualization panel
         visualizer = new VisualizerPanel();
@@ -385,7 +344,7 @@ class GraphicalBoxInput {
     class BackgroundListener implements ItemListener {
         /**
          * When the switch background button is pressed, switch background theme
-         * @param e An ActionEvent
+         * @param itemEvent An ActionEvent
          */
         @Override
         public void itemStateChanged(ItemEvent itemEvent) {
@@ -393,10 +352,41 @@ class GraphicalBoxInput {
 
             // if selected print selected in console
             if (state == ItemEvent.SELECTED) {
-                invertColorsDarkMode();
+                // Setting panel backgrounds
+                frame.getContentPane().setBackground(Color.BLACK);
+                formPanel.setBackground(Color.BLACK);
+                // Setting color button
+                colorButton.setBackground(Color.WHITE);
+                color = Color.WHITE;
+                // Setting submit button
+                submitButton.setBackground(Color.WHITE);
+                // Setting delete button
+                deleteButton.setBackground(Color.WHITE);
+                // Setting done button
+                doneButton.setBackground(Color.WHITE);
+                // Setting texts
+                lengthLabel.setForeground(Color.WHITE);
+                widthLabel.setForeground(Color.WHITE);
+                heightLabel.setForeground(Color.WHITE);
+                weightLabel.setForeground(Color.WHITE);
             }
             else {
-                invertColorsLightMode();
+                // Setting panel backgrounds
+                frame.getContentPane().setBackground(Color.WHITE);
+                formPanel.setBackground(Color.WHITE);
+                // Setting color button
+                colorButton.setBackground(Color.BLACK);
+                // Setting submit button
+                submitButton.setBackground(Color.BLACK);
+                // Setting delete button
+                deleteButton.setBackground(Color.BLACK);
+                // Setting done button
+                doneButton.setBackground(Color.BLACK);
+                // Setting texts
+                lengthLabel.setForeground(Color.BLACK);
+                widthLabel.setForeground(Color.BLACK);
+                heightLabel.setForeground(Color.BLACK);
+                weightLabel.setForeground(Color.BLACK);
             }
         }
     }
