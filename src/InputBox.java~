@@ -6,7 +6,7 @@ import java.awt.Graphics;
  * InputBox is used by the Graphical Inputing system to draw boxes
  * and to convert them to strings.
  */
-class InputBox extends Box implements Drawable {
+class InputBox extends Box {
     
     InputBox(int width, int length, int height, int weight, Color color) {
         super(width, length, height, weight, color);

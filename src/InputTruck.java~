@@ -1,13 +1,10 @@
 package src;
 
-import java.awt.Color;
-import java.awt.Graphics;
-
 /**
  * InputTruck is used by the graphical inputting system to represent
  * trucks and to get a string representation of them
  */
-class InputTruck extends Truck implements Drawable {
+class InputTruck extends Truck {
     InputTruck(int length, int width, int height, int maxWeight) {
         super(length, width, height, maxWeight);
     }
@@ -27,14 +24,5 @@ class InputTruck extends Truck implements Drawable {
      */
     public Truck toTruck() {
         return new Truck(this.getLength(), this.getWidth(), this.getHeight(), this.getMaxWeight());
-    }
-    
-    /**
-     * Draws the InputTruck to the given graphics object.
-     * @param g The Graphics object.
-     */
-    public void draw(Graphics g) {
-        g.setColor(Color.BLACK);
-        g.drawRect(20, 20, this.getWidth(), this.getHeight());
     }
 }

@@ -91,7 +91,7 @@ class GraphicalBoxInput {
             // program to that box.
             int index = boxList.getSelectedIndex();
             if (index != -1) {
-                visualizer.select(boxes.get(index));
+                visualizer.selectBox(boxes.get(index));
             }
             
             try { Thread.sleep(DELAY); }

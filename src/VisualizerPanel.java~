@@ -6,9 +6,9 @@ import javax.swing.JPanel;
  * Visualization panel used to visualize boxes for the
  * input graphical user interface.
  */
-class VisualizerPanel extends JPanel {
+public class VisualizerPanel extends JPanel {
     
-    private Drawable obj;
+    private InputBox box;
     
     VisualizerPanel() {
         setFocusable(true);
@@ -19,8 +19,8 @@ class VisualizerPanel extends JPanel {
      * Change the focus of the visualizer
      * @param box The new focus of the visualizer
      */
-    public void select(Drawable obj) {
-        this.obj = obj;
+    public void selectBox(InputBox box) {
+        this.box = box;
     }
 
     /**
@@ -28,8 +28,8 @@ class VisualizerPanel extends JPanel {
      * @param g A Graphics object.
      */
     public void paintComponent(Graphics g) {
-        if (obj != null) {
-            obj.draw(g);
+        if (box != null) {
+            box.draw(g);
         }
     }
 }
