@@ -24,6 +24,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 
 import javax.swing.JList;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionListener;
@@ -52,6 +53,10 @@ class GraphicalBoxInput {
     private JButton submitButton;
     private JButton deleteButton;
     private JButton doneButton;
+
+    private Color backgroundLightColor = new Color(228, 230, 235);
+    private Color backgroundDarkColor = new Color(24, 25, 26);
+    private Color whiteTextColor = new Color(176, 179, 184);
 
     private JLabel lengthLabel;
     private JLabel widthLabel;
@@ -160,6 +165,7 @@ class GraphicalBoxInput {
         // Form panel
         formPanel = new JPanel();
         formPanel.setLayout(new GridBagLayout());
+        formPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
         // Labels
         lengthLabel = new JLabel("Length");
@@ -353,40 +359,40 @@ class GraphicalBoxInput {
             // if selected print selected in console
             if (state == ItemEvent.SELECTED) {
                 // Setting panel backgrounds
-                frame.getContentPane().setBackground(Color.BLACK);
-                formPanel.setBackground(Color.BLACK);
+                frame.getContentPane().setBackground(backgroundDarkColor);
+                formPanel.setBackground(backgroundDarkColor);
                 // Setting color button
-                colorButton.setBackground(Color.WHITE);
+                colorButton.setBackground(whiteTextColor);
                 color = Color.WHITE;
                 // Setting submit button
-                submitButton.setBackground(Color.WHITE);
+                submitButton.setBackground(whiteTextColor);
                 // Setting delete button
-                deleteButton.setBackground(Color.WHITE);
+                deleteButton.setBackground(whiteTextColor);
                 // Setting done button
-                doneButton.setBackground(Color.WHITE);
+                doneButton.setBackground(whiteTextColor);
                 // Setting texts
-                lengthLabel.setForeground(Color.WHITE);
-                widthLabel.setForeground(Color.WHITE);
-                heightLabel.setForeground(Color.WHITE);
-                weightLabel.setForeground(Color.WHITE);
+                lengthLabel.setForeground(whiteTextColor);
+                widthLabel.setForeground(whiteTextColor);
+                heightLabel.setForeground(whiteTextColor);
+                weightLabel.setForeground(whiteTextColor);
             }
             else {
                 // Setting panel backgrounds
-                frame.getContentPane().setBackground(Color.WHITE);
-                formPanel.setBackground(Color.WHITE);
+                frame.getContentPane().setBackground(backgroundLightColor);
+                formPanel.setBackground(backgroundLightColor);
                 // Setting color button
-                colorButton.setBackground(Color.BLACK);
+                colorButton.setBackground(backgroundDarkColor);
                 // Setting submit button
-                submitButton.setBackground(Color.BLACK);
+                submitButton.setBackground(backgroundDarkColor);
                 // Setting delete button
-                deleteButton.setBackground(Color.BLACK);
+                deleteButton.setBackground(backgroundDarkColor);
                 // Setting done button
-                doneButton.setBackground(Color.BLACK);
+                doneButton.setBackground(backgroundDarkColor);
                 // Setting texts
-                lengthLabel.setForeground(Color.BLACK);
-                widthLabel.setForeground(Color.BLACK);
-                heightLabel.setForeground(Color.BLACK);
-                weightLabel.setForeground(Color.BLACK);
+                lengthLabel.setForeground(backgroundDarkColor);
+                widthLabel.setForeground(backgroundDarkColor);
+                heightLabel.setForeground(backgroundDarkColor);
+                weightLabel.setForeground(backgroundDarkColor);
             }
         }
     }
