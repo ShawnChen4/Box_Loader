@@ -1,6 +1,8 @@
 package src;
 
 import java.awt.Color;
+import java.awt.Font;
+
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import java.util.ArrayList;
@@ -62,6 +64,8 @@ class GraphicalBoxInput {
     private JLabel widthLabel;
     private JLabel heightLabel;
     private JLabel weightLabel;
+
+    private Font monoSpaceFont = new Font("ComicMono.ttf", 10, 10);
 
     private JToggleButton backgroundButton;
     
@@ -155,6 +159,12 @@ class GraphicalBoxInput {
         submitButton = new JButton("Submit");
         deleteButton = new JButton("Delete");
         backgroundButton = new JToggleButton("Switch");
+
+        // Fonts
+        colorButton.setFont(monoSpaceFont);
+        submitButton.setFont(monoSpaceFont);
+        deleteButton.setFont(monoSpaceFont);
+        deleteButton.setFont(monoSpaceFont);
         
         // boiler plate
         frame = new JFrame("Box Input");
@@ -172,6 +182,10 @@ class GraphicalBoxInput {
         widthLabel = new JLabel("Width");
         heightLabel = new JLabel("Height");
         weightLabel = new JLabel("Weight");
+        lengthLabel.setFont(monoSpaceFont);
+        widthLabel.setFont(monoSpaceFont);
+        heightLabel.setFont(monoSpaceFont);
+        weightLabel.setFont(monoSpaceFont);
         
         // Form text fields
         addItem(formPanel, lengthLabel, 0, 0, 0, 1);
@@ -375,6 +389,7 @@ class GraphicalBoxInput {
                 widthLabel.setForeground(whiteTextColor);
                 heightLabel.setForeground(whiteTextColor);
                 weightLabel.setForeground(whiteTextColor);
+
             }
             else {
                 // Setting panel backgrounds
