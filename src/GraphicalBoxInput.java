@@ -1,8 +1,6 @@
 package src;
 
 import java.awt.Color;
-import java.awt.Font;
-
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import java.util.ArrayList;
@@ -56,16 +54,10 @@ class GraphicalBoxInput {
     private JButton deleteButton;
     private JButton doneButton;
 
-    private Color backgroundLightColor = new Color(228, 230, 235);
-    private Color backgroundDarkColor = new Color(24, 25, 26);
-    private Color whiteTextColor = new Color(176, 179, 184);
-
     private JLabel lengthLabel;
     private JLabel widthLabel;
     private JLabel heightLabel;
     private JLabel weightLabel;
-
-    private Font monoSpaceFont = new Font("ComicMono.ttf", 10, 10);
 
     private JToggleButton backgroundButton;
     
@@ -159,12 +151,6 @@ class GraphicalBoxInput {
         submitButton = new JButton("Submit");
         deleteButton = new JButton("Delete");
         backgroundButton = new JToggleButton("Switch");
-
-        // Fonts
-        colorButton.setFont(monoSpaceFont);
-        submitButton.setFont(monoSpaceFont);
-        deleteButton.setFont(monoSpaceFont);
-        deleteButton.setFont(monoSpaceFont);
         
         // boiler plate
         frame = new JFrame("Box Input");
@@ -182,10 +168,10 @@ class GraphicalBoxInput {
         widthLabel = new JLabel("Width");
         heightLabel = new JLabel("Height");
         weightLabel = new JLabel("Weight");
-        lengthLabel.setFont(monoSpaceFont);
-        widthLabel.setFont(monoSpaceFont);
-        heightLabel.setFont(monoSpaceFont);
-        weightLabel.setFont(monoSpaceFont);
+        lengthLabel.setFont(Const.CUSTOM_FONT);
+        widthLabel.setFont(Const.CUSTOM_FONT);
+        heightLabel.setFont(Const.CUSTOM_FONT);
+        weightLabel.setFont(Const.CUSTOM_FONT);
         
         // Form text fields
         addItem(formPanel, lengthLabel, 0, 0, 0, 1);
@@ -240,7 +226,13 @@ class GraphicalBoxInput {
         backgroundButton = new JToggleButton("Switch");
         backgroundButton.addItemListener(new BackgroundListener());
         addItem(formPanel, backgroundButton, 0, 9, 20, 3);
-        
+
+        // Fonts
+        colorButton.setFont(Const.CUSTOM_FONT);
+        submitButton.setFont(Const.CUSTOM_FONT);
+        deleteButton.setFont(Const.CUSTOM_FONT);
+        doneButton.setFont(Const.CUSTOM_FONT);
+        backgroundButton.setFont(Const.CUSTOM_FONT);  
         // pack and visualize
         frame.pack();
         frame.setVisible(true);
@@ -373,41 +365,41 @@ class GraphicalBoxInput {
             // if selected print selected in console
             if (state == ItemEvent.SELECTED) {
                 // Setting panel backgrounds
-                frame.getContentPane().setBackground(backgroundDarkColor);
-                formPanel.setBackground(backgroundDarkColor);
+                frame.getContentPane().setBackground(Const.BACKGROUND_DARK_COLOR);
+                formPanel.setBackground(Const.BACKGROUND_DARK_COLOR);
                 // Setting color button
-                colorButton.setBackground(whiteTextColor);
+                colorButton.setBackground(Const.WHITE_TEXT_COLOR);
                 color = Color.WHITE;
                 // Setting submit button
-                submitButton.setBackground(whiteTextColor);
+                submitButton.setBackground(Const.WHITE_TEXT_COLOR);
                 // Setting delete button
-                deleteButton.setBackground(whiteTextColor);
+                deleteButton.setBackground(Const.WHITE_TEXT_COLOR);
                 // Setting done button
-                doneButton.setBackground(whiteTextColor);
+                doneButton.setBackground(Const.WHITE_TEXT_COLOR);
                 // Setting texts
-                lengthLabel.setForeground(whiteTextColor);
-                widthLabel.setForeground(whiteTextColor);
-                heightLabel.setForeground(whiteTextColor);
-                weightLabel.setForeground(whiteTextColor);
+                lengthLabel.setForeground(Const.WHITE_TEXT_COLOR);
+                widthLabel.setForeground(Const.WHITE_TEXT_COLOR);
+                heightLabel.setForeground(Const.WHITE_TEXT_COLOR);
+                weightLabel.setForeground(Const.WHITE_TEXT_COLOR);
 
             }
             else {
                 // Setting panel backgrounds
-                frame.getContentPane().setBackground(backgroundLightColor);
-                formPanel.setBackground(backgroundLightColor);
+                frame.getContentPane().setBackground(Const.BACKGROUND_LIGHT_COLOR);
+                formPanel.setBackground(Const.BACKGROUND_LIGHT_COLOR);
                 // Setting color button
-                colorButton.setBackground(backgroundDarkColor);
+                colorButton.setBackground(Const.BACKGROUND_DARK_COLOR);
                 // Setting submit button
-                submitButton.setBackground(backgroundDarkColor);
+                submitButton.setBackground(Const.BACKGROUND_DARK_COLOR);
                 // Setting delete button
-                deleteButton.setBackground(backgroundDarkColor);
+                deleteButton.setBackground(Const.BACKGROUND_DARK_COLOR);
                 // Setting done button
-                doneButton.setBackground(backgroundDarkColor);
+                doneButton.setBackground(Const.BACKGROUND_DARK_COLOR);
                 // Setting texts
-                lengthLabel.setForeground(backgroundDarkColor);
-                widthLabel.setForeground(backgroundDarkColor);
-                heightLabel.setForeground(backgroundDarkColor);
-                weightLabel.setForeground(backgroundDarkColor);
+                lengthLabel.setForeground(Const.BACKGROUND_DARK_COLOR);
+                widthLabel.setForeground(Const.BACKGROUND_DARK_COLOR);
+                heightLabel.setForeground(Const.BACKGROUND_DARK_COLOR);
+                weightLabel.setForeground(Const.BACKGROUND_DARK_COLOR);
             }
         }
     }

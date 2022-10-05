@@ -9,7 +9,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
-import javax.swing.JColorChooser;
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 
@@ -20,10 +19,9 @@ import java.awt.BorderLayout;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.ChangeEvent;
 
 import javax.swing.JList;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionListener;
@@ -51,6 +49,13 @@ class GraphicalTruckInput {
     private JButton submitButton;
     private JButton deleteButton;
     private JButton doneButton;
+
+    private JLabel lengthLabel;
+    private JLabel widthLabel;
+    private JLabel heightLabel;
+    private JLabel maxWeightLabel;
+
+    private JToggleButton backgroundButton;
     
     private JPanel formPanel;
     private JPanel visualizationPanel;
@@ -74,6 +79,7 @@ class GraphicalTruckInput {
         maxWeightInput = new JTextField(10);
         submitButton = new JButton("Submit");
         deleteButton = new JButton("Delete");
+        backgroundButton = new JToggleButton("Switch");
         
         // boiler plate
         frame = new JFrame("Truck Input");
@@ -84,15 +90,23 @@ class GraphicalTruckInput {
         // Form panel
         formPanel = new JPanel();
         formPanel.setLayout(new GridBagLayout());
+        formPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         
+        // Jlabels
+
+        lengthLabel = new JLabel("Length");
+        widthLabel = new JLabel("Width");
+        heightLabel = new JLabel("Height");
+        maxWeightLabel = new JLabel("Max Weight");
+
         // Form text fields
-        addItem(formPanel, new JLabel("Length"), 0, 0, 0, 1);
+        addItem(formPanel, lengthLabel, 0, 0, 0, 1);
         addItem(formPanel, lengthInput, 1, 0, 0, 2);
-        addItem(formPanel, new JLabel("Width"), 0, 1, 0, 1);
+        addItem(formPanel, widthLabel, 0, 1, 0, 1);
         addItem(formPanel, widthInput, 1, 1, 0, 2);
-        addItem(formPanel, new JLabel("Height"), 0, 2, 0, 1);
+        addItem(formPanel, heightLabel, 0, 2, 0, 1);
         addItem(formPanel, heightInput, 1, 2, 0, 2);
-        addItem(formPanel, new JLabel("Max Weight"), 0, 3, 0, 1);
+        addItem(formPanel, maxWeightLabel, 0, 3, 0, 1);
         addItem(formPanel, maxWeightInput, 1, 3, 0, 2);
         
         // submit button
@@ -119,6 +133,12 @@ class GraphicalTruckInput {
         doneButton = new JButton("Done");
         doneButton.addActionListener(new DoneListener());
         addItem(formPanel, doneButton, 0, 8, 20, 3);
+
+        // Background button
+
+        backgroundButton = new JToggleButton("Switch");
+        backgroundButton.addItemListener(new BackgroundListener());
+        addItem(formPanel, backgroundButton, 0, 9, 20, 3);
         
         // Visualization panel
         visualizer = new VisualizerPanel();
@@ -126,6 +146,18 @@ class GraphicalTruckInput {
         visualizationPanel.setLayout(new GridLayout(VISUALIZATION_PANEL_HEIGHT, 2));
         visualizationPanel.add(visualizer);
         frame.getContentPane().add(visualizationPanel, BorderLayout.WEST);
+
+        // Setting fonts for JLabels
+        lengthLabel.setFont(Const.CUSTOM_FONT);
+        widthLabel.setFont(Const.CUSTOM_FONT);
+        heightLabel.setFont(Const.CUSTOM_FONT);
+        maxWeightLabel.setFont(Const.CUSTOM_FONT);
+        backgroundButton.setFont(Const.CUSTOM_FONT);  
+
+        // Setting button fonts
+        submitButton.setFont(Const.CUSTOM_FONT);
+        doneButton.setFont(Const.CUSTOM_FONT);
+        deleteButton.setFont(Const.CUSTOM_FONT);
         
         // pack and visualize
         frame.pack();
@@ -275,6 +307,55 @@ class GraphicalTruckInput {
          */
         public void actionPerformed(ActionEvent e) {
             running = false;
+        }
+    }
+
+    /**
+     * Listener for the switch background button
+     */
+    class BackgroundListener implements ItemListener {
+        /**
+         * When the switch background button is pressed, switch background theme
+         * @param itemEvent An ActionEvent
+         */
+        @Override
+        public void itemStateChanged(ItemEvent itemEvent) {
+            int state = itemEvent.getStateChange();
+
+            // if selected print selected in console
+            if (state == ItemEvent.SELECTED) {
+                // Setting panel backgrounds
+                frame.getContentPane().setBackground(Const.BACKGROUND_DARK_COLOR);
+                formPanel.setBackground(Const.BACKGROUND_DARK_COLOR);
+                // Setting submit button
+                submitButton.setBackground(Const.WHITE_TEXT_COLOR);
+                // Setting delete button
+                deleteButton.setBackground(Const.WHITE_TEXT_COLOR);
+                // Setting done button
+                doneButton.setBackground(Const.WHITE_TEXT_COLOR);
+                // Setting texts
+                lengthLabel.setForeground(Const.WHITE_TEXT_COLOR);
+                widthLabel.setForeground(Const.WHITE_TEXT_COLOR);
+                heightLabel.setForeground(Const.WHITE_TEXT_COLOR);
+                maxWeightLabel.setForeground(Const.WHITE_TEXT_COLOR);
+
+            }
+            else {
+                // Setting panel backgrounds
+                frame.getContentPane().setBackground(Const.BACKGROUND_LIGHT_COLOR);
+                formPanel.setBackground(Const.BACKGROUND_LIGHT_COLOR);
+                // Setting submit button
+                submitButton.setBackground(Const.BACKGROUND_DARK_COLOR);
+                // Setting delete button
+                deleteButton.setBackground(Const.BACKGROUND_DARK_COLOR);
+                // Setting done button
+                doneButton.setBackground(Const.BACKGROUND_DARK_COLOR);
+                // Setting texts
+                lengthLabel.setForeground(Const.BACKGROUND_DARK_COLOR);
+                widthLabel.setForeground(Const.BACKGROUND_DARK_COLOR);
+                heightLabel.setForeground(Const.BACKGROUND_DARK_COLOR);
+                maxWeightLabel.setForeground(Const.BACKGROUND_DARK_COLOR);
+            }
         }
     }
 }
