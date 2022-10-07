@@ -8,6 +8,7 @@ import java.awt.Graphics;
  * trucks and to get a string representation of them
  */
 class InputTruck extends Truck implements Drawable {
+
     InputTruck(int length, int width, int height, int maxWeight) {
         super(length, width, height, maxWeight);
     }
@@ -34,7 +35,7 @@ class InputTruck extends Truck implements Drawable {
      * @param g The Graphics object.
      */
     public void draw(Graphics g) {
-        g.setColor(Color.BLACK);
+        g.setColor(Color.BLUE);
         g.drawRect(20, 20, this.getWidth(), this.getHeight());
     }
 }

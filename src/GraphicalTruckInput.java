@@ -338,7 +338,7 @@ class GraphicalTruckInput {
                 widthLabel.setForeground(Const.WHITE_TEXT_COLOR);
                 heightLabel.setForeground(Const.WHITE_TEXT_COLOR);
                 maxWeightLabel.setForeground(Const.WHITE_TEXT_COLOR);
-
+                
             }
             else {
                 // Setting panel backgrounds
