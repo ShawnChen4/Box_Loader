@@ -327,29 +327,16 @@ class GraphicalTruckInput {
                 // Setting panel backgrounds
                 frame.getContentPane().setBackground(Const.BACKGROUND_DARK_COLOR);
                 formPanel.setBackground(Const.BACKGROUND_DARK_COLOR);
-                // Setting submit button
-                submitButton.setBackground(Const.WHITE_TEXT_COLOR);
-                // Setting delete button
-                deleteButton.setBackground(Const.WHITE_TEXT_COLOR);
-                // Setting done button
-                doneButton.setBackground(Const.WHITE_TEXT_COLOR);
                 // Setting texts
                 lengthLabel.setForeground(Const.WHITE_TEXT_COLOR);
                 widthLabel.setForeground(Const.WHITE_TEXT_COLOR);
                 heightLabel.setForeground(Const.WHITE_TEXT_COLOR);
                 maxWeightLabel.setForeground(Const.WHITE_TEXT_COLOR);
-                
             }
             else {
                 // Setting panel backgrounds
                 frame.getContentPane().setBackground(Const.BACKGROUND_LIGHT_COLOR);
                 formPanel.setBackground(Const.BACKGROUND_LIGHT_COLOR);
-                // Setting submit button
-                submitButton.setBackground(Const.BACKGROUND_DARK_COLOR);
-                // Setting delete button
-                deleteButton.setBackground(Const.BACKGROUND_DARK_COLOR);
-                // Setting done button
-                doneButton.setBackground(Const.BACKGROUND_DARK_COLOR);
                 // Setting texts
                 lengthLabel.setForeground(Const.BACKGROUND_DARK_COLOR);
                 widthLabel.setForeground(Const.BACKGROUND_DARK_COLOR);
