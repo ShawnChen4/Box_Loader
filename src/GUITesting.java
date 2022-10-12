@@ -1,4 +1,3 @@
-package src;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -62,7 +61,7 @@ public class GUITesting extends JFrame {
     this.add(panel1);
     this.pack();
     this.setVisible(true);
-	this.setSize(600, 400);
+ this.setSize(600, 400);
   }
 
 // Add item method
